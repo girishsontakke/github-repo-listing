@@ -1,0 +1,48 @@
+.repositoryContainer {
+  max-width: 440px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 16px;
+  position: relative;
+
+  .repositoryNameContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .repositoryName {
+      color: var(--color-link);
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+  .repositoryDescription {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-muted);
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+  .bottom {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    padding-top: 8px;
+    .languageContainer {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .languageDot {
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        background-color: var(--color-language);
+      }
+      p {
+        margin: 0;
+        font-size: 12px;
+        color: var(--color-muted);
+      }
+    }
+  }
+}
