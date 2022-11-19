@@ -23,9 +23,7 @@ function App() {
 
     const fetchProfile = async () => {
       try {
-        const response = await fetch(
-          `https://api.github.com/users/priyanshisharma`
-        );
+        const response = await fetch(`https://api.github.com/users/saroj789`);
         const data = await response.json();
         setProfile(data);
       } catch (error) {}

@@ -13,7 +13,6 @@ export interface Iprofile {
   login: string;
   location?: string;
   company?: string;
-  email?: string;
   blog?: string;
   twitter_username?: string;
   followers: number;
