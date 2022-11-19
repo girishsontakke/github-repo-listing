@@ -1,4 +1,4 @@
-import RepositoryIcon from "components/repositoryIcon/RepositoryIcon";
+import { RepositoryIcon } from "components/icons";
 import VisibilityTag from "components/visibilityTag/VisibilityTag";
 import { IRepository } from "types";
 import styles from "./Repository.module.scss";
@@ -10,12 +10,15 @@ function Repository(props: Iprops) {
   const { repository } = props;
   return (
     <div className={styles.repositoryContainer}>
-      <div className={styles.repositoryNameContainer}>
-        <RepositoryIcon />
-        <span className={styles.repositoryName}>{repository.name}</span>
-        <VisibilityTag isPrivate={repository.private} />
+      <div>
+        <div className={styles.repositoryNameContainer}>
+          <RepositoryIcon />
+          <span className={styles.repositoryName}>{repository.name}</span>
+          <VisibilityTag isPrivate={repository.private} />
+        </div>
+        <p className={styles.repositoryDescription}>{repository.description}</p>
       </div>
-      <p className={styles.repositoryDescription}>{repository.description}</p>
+
       <div className={styles.bottom}>
         {repository.language && (
           <div className={styles.languageContainer}>

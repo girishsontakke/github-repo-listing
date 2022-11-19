@@ -7,3 +7,16 @@ export interface IRepository {
   stargazers_count: number;
   language: string;
 }
+
+export interface Iprofile {
+  name: string;
+  login: string;
+  location?: string;
+  company?: string;
+  email?: string;
+  blog?: string;
+  twitter_username?: string;
+  followers: number;
+  following: number;
+  avatar_url: string;
+}
