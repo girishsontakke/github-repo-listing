@@ -1,7 +1,12 @@
+@import "../../variables";
 .repositoriesContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   max-width: 890px;
   padding: 20px 0;
+
+  @media screen and (max-width: $size-large) {
+    grid-template-columns: 1fr;
+  }
 }

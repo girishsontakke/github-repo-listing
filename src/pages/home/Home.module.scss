@@ -1,0 +1,12 @@
+@import "../../variables";
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 5%;
+
+  @media screen and (min-width: $size-medium) {
+    padding: 20px 10%;
+    flex-direction: row;
+  }
+}
