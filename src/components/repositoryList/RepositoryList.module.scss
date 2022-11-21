@@ -8,5 +8,6 @@
 
   @media screen and (max-width: $size-large) {
     grid-template-columns: 1fr;
+    width: 100%;
   }
 }

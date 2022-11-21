@@ -44,11 +44,14 @@ function Pagination({
       >
         <div className={`${styles.arrow} ${styles.left}`} />
       </li>
-      {paginationRange.map((pageNumber) => {
+      {paginationRange.map((pageNumber, idx) => {
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
           return (
-            <li key={pageNumber} className="pagination-item dots">
+            <li
+              key={pageNumber + idx}
+              className={`${styles.paginationItem} ${styles.dots}`}
+            >
               &#8230;
             </li>
           );

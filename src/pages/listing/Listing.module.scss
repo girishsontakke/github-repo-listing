@@ -6,6 +6,19 @@
   gap: 30px;
   padding: 20px 5%;
 
+  .repositoriesWrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    .paginationWrapper {
+      align-self: center;
+
+      @media screen and (max-width: $size-small) {
+        align-self: flex-start;
+      }
+    }
+  }
+
   @media screen and (min-width: $size-medium) {
     padding: 20px 10%;
     flex-direction: row;
