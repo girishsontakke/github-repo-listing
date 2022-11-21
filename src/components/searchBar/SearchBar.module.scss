@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.form {
+  width: 100%;
+  .input {
+    all: unset;
+    width: 60%;
+    height: 28px;
+    border-radius: 6px;
+    padding: 0 12px;
+    color: white;
+    background-color: var(--color-profile);
+    border: 1px solid #57606a;
+
+    &::placeholder {
+      color: #a0a4aa;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    &:active,
+    &:focus {
+      color: var(--color-profile);
+      background-color: #fff;
+    }
+    @media screen and (min-width: $size-small) {
+      width: 30%;
+    }
+  }
+
+  .searchButton {
+    all: unset;
+    border-radius: 6px;
+    background-color: white;
+    color: var(--color-profile);
+    border: 1px solid var(--color-profile);
+    height: 28px;
+    padding: 0 24px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
