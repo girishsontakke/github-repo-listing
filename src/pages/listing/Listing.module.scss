@@ -1,6 +1,7 @@
 @import "../../variables";
 .homeContainer {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   gap: 30px;
   padding: 20px 5%;

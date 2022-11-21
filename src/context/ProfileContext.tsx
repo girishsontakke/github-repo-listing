@@ -26,12 +26,18 @@ export const ProfileContextProvider = ({
     async (username: string) => {
       try {
         setProfileLoading(true);
+        setProfileError(null);
         const response = await fetch(
           `https://api.github.com/users/${username}`
         );
         setProfileLoading(false);
         const data = await response.json();
-        setProfile(data);
+        if (response.status === 404) {
+          setProfileError(data?.message);
+          setProfile(null);
+        } else {
+          setProfile(data);
+        }
       } catch (error) {
         setProfileError("username does not exist");
         setProfile(null);

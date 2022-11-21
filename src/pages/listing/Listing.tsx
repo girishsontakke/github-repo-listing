@@ -1,18 +1,20 @@
 import Profile from "components/profile/Profile";
 import RepositoryList from "components/repositoryList/RepositoryList";
+import Spinner from "components/spinner/Spinner";
 import LoadingContext from "context/LoadingContext";
 import ProfileContext from "context/ProfileContext";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IRepository } from "types";
 import styles from "./Listing.module.scss";
 
 function Listing() {
   const [repositories, setRepositories] = useState<IRepository[]>([]);
-  const { profile, fetchProfile } = useContext(ProfileContext);
+  const { profile, fetchProfile, profileError } = useContext(ProfileContext);
   const { profileLoading, repositoriesLoading, setRepositoriesLoading } =
     useContext(LoadingContext);
   const { username } = useParams();
+  const navigate = useNavigate();
 
   // fetches public repos of the provided user
   const fetchRepositories = useCallback(async () => {
@@ -33,20 +35,26 @@ function Listing() {
   }, [profile, setRepositoriesLoading]);
 
   useEffect(() => {
-    if (username) fetchProfile(username);
+    if (username && username?.length > 0) fetchProfile(username);
   }, [fetchProfile, username]);
 
   useEffect(() => {
     fetchRepositories();
   }, [profile, fetchRepositories]);
 
+  useEffect(() => {
+    if (profileError) navigate("/");
+  }, [profileError, navigate]);
+
   return profileLoading ? (
-    <div>loading</div>
+    <Spinner />
   ) : (
     <div className={styles.homeContainer}>
       <Profile profile={profile} />
+
+      {/* render repositories if not loading */}
       {repositoriesLoading ? (
-        <div>loading</div>
+        <Spinner />
       ) : (
         repositories.length > 0 && (
           <RepositoryList repositories={repositories} />

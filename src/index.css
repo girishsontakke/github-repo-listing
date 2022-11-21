@@ -22,3 +22,13 @@ code {
   --color-avatar-border: #1b1f2426;
   --color-profile: #24292f;
 }
+
+.container {
+  position: relative;
+  padding: 20px 5%;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 20px 10%;
+  } 
+}
