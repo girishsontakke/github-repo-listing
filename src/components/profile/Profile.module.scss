@@ -1,9 +1,11 @@
 @import "../../variables";
 .profileContainer {
   width: 30%;
+  overflow: scroll;
 
   .avatar {
-    width: 100%;
+    width: 224px;
+    max-width: 100%;
     border-radius: 50%;
     object-fit: contain;
     box-shadow: 0 0 0 1px var(--color-avatar-border);

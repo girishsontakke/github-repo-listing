@@ -18,7 +18,11 @@ function Profile(props: Iprops) {
     <div className={styles.profileContainer}>
       {profile && (
         <>
-          <img src={profile.avatar_url} className={styles.avatar} />
+          <img
+            src={profile.avatar_url}
+            className={styles.avatar}
+            alt="user avatar"
+          />
           <div>
             <div className={styles.name}>
               <h1>{profile.name}</h1>

@@ -72,6 +72,7 @@ function Listing() {
       <Profile profile={profile} />
 
       {/* render repositories if not loading */}
+
       {repositoriesLoading ? (
         <Spinner />
       ) : (
