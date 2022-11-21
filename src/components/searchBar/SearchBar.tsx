@@ -1,12 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SearchBar.module.scss";
 
-interface Iprops {
-  user: string | null;
-  setUser: (user: string) => void;
-}
-
-function SearchBar({ user, setUser }: Iprops) {
+function SearchBar() {
+  const [user, setUser] = useState("");
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (user?.length && user.length > 0) {
