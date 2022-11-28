@@ -4,19 +4,16 @@ import RepositoryList from "components/repositoryList/RepositoryList";
 import Spinner from "components/spinner/Spinner";
 import LoadingContext from "context/LoadingContext";
 import ProfileContext from "context/ProfileContext";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import useRepository from "hooks/useRepository";
+import { useContext, useEffect, useMemo } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { IRepository } from "types";
+
 import styles from "./Listing.module.scss";
 
 function Listing() {
-  // component state
-  const [repositories, setRepositories] = useState<IRepository[]>([]);
-
   // context state and actions
   const { profile, fetchProfile, profileError } = useContext(ProfileContext);
-  const { profileLoading, repositoriesLoading, setRepositoriesLoading } =
-    useContext(LoadingContext);
+  const { profileLoading, repositoriesLoading } = useContext(LoadingContext);
 
   // react-router-dom hooks
   const { username } = useParams();
@@ -24,40 +21,22 @@ function Listing() {
   const [searchParams] = useSearchParams();
 
   const currentPage = useMemo(() => {
-    let page = searchParams.get("page");
+    let page = searchParams.get("page") || 1;
     if (typeof page === "string") {
       try {
-        return parseInt(page);
-      } catch (error) {}
+        page = parseInt(page);
+      } catch (error) {
+        return 1;
+      }
     }
-    return page;
+    return Number.isNaN(page) ? 1 : page;
   }, [searchParams]);
 
-  // fetches public repos of the provided user
-  const fetchRepositories = useCallback(async () => {
-    try {
-      if (profile) {
-        setRepositoriesLoading(true);
-        const response = await fetch(
-          `https://api.github.com/users/${profile.login}/repos?per_page=10&page=${currentPage}`
-        );
-        setRepositoriesLoading(false);
-        const data = await response.json();
-        setRepositories(data);
-      }
-    } catch (error) {
-      setRepositories([]);
-      setRepositoriesLoading(false);
-    }
-  }, [profile, setRepositoriesLoading, currentPage]);
+  const { repositories } = useRepository(profile, currentPage);
 
   useEffect(() => {
     if (username && username?.length > 0) fetchProfile(username);
   }, [fetchProfile, username]);
-
-  useEffect(() => {
-    fetchRepositories();
-  }, [profile, fetchRepositories]);
 
   if (profileError) navigate("/");
 
